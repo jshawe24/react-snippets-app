@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Importing QueryClient and QueryClientProvider
 
 import UserForm from './components/UserForm/UserForm';
-import ProductCard from './components/ProductCard/ProductCard';
+import ProductPage from './components/ProductCard/ProductPage';
 import FetchData from './components/FetchData/FetchData';
 import CustomHook from './components/CustomHook/CustomHook';
 import CountIntervals from './components/CountIntervals/CountIntervals';
@@ -47,7 +47,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<h1>Welcome to the Home Page</h1>} />
               <Route path="/user-form" element={<UserForm />} />
-              <Route path="/product-card" element={<ProductCard quantity="2" />} />
+              <Route path="/product-card" element={<ProductPage />} />  {/* Use ProductPage here */}
               <Route path="/fetch-data" element={<FetchData />} />
               <Route path="/custom-hook" element={<CustomHook />} />
               <Route path="/count-intervals" element={<CountIntervals />} />
