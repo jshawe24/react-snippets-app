@@ -1,0 +1,54 @@
+/* src/components/ProductCard/ProductCard.css */
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #ffffff;
+    max-width: 300px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    color: #007BFF;
+}
+
+.product-card p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.limited-stock {
+    color: #dc3545 !important; /* Red for limited stock */
+    font-weight: bold;
+}
+
+.buy-now {
+    color: #007BFF !important; /* Blue for call to action */
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        max-width: 90%;
+        margin: 10px auto;
+    }
+}
