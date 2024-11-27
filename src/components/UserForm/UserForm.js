@@ -44,13 +44,13 @@ const UserForm = ({ initialUser }) => {
             <div className="code-container">
                 <SyntaxHighlighter language="javascript" style={solarizedlight}>
                     {`const handleChange = (e) => {
-    // Update the user state with the new name while keeping city and age the same
-    setUser({
-        ...user,
-        [e.target.name]: e.target.value
-    });
-};`}
-                </SyntaxHighlighter>
+                    // Update the user state with the new name while keeping city and age the same
+                    setUser({
+                        ...user,
+                        [e.target.name]: e.target.value
+                    });
+                };`}
+                                </SyntaxHighlighter>
             </div>
 
             <div className="container">
