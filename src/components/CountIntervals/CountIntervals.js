@@ -2,39 +2,59 @@ import React, { useEffect, useState } from "react";
 
 export default function CounterIntervals() {
   const [count, setCount] = useState(0);
+  const [isActive, setIsActive] = useState(false); // State to control the interval
 
   useEffect(() => {
-     // Set up the interval to increment the count every second
-    const intervalId = setInterval(() => {
-      console.log("Interval function running...");
+    let intervalId;
 
-      // Increment the count
-      setCount(prev => prev + 1);
+    if (isActive) {
+      // Set up the interval to increment the count every second
+      intervalId = setInterval(() => {
+        console.log("Interval function running...");
 
-    }, 1000);
+        // Increment the count if it's less than 10
+        setCount(prev => {
+          if (prev < 10) {
+            return prev + 1;
+          } else {
+            clearInterval(intervalId); // Clear the interval when reaching 20
+            return prev; // Prevent further increment
+          }
+        });
+      }, 1000);
+    }
 
-    // If count reaches 10, clear the interval
-    if (count >= 10) 
-        { // Check for 10 increments
-        clearInterval(intervalId);
-        }
-
-    // Cleanup function to clear the interval on unmount
+    // Cleanup function to clear the interval on unmount or when stopping
     return () => clearInterval(intervalId);
-  }, [count]); // We set count here to make sure once it reaches 10 it will stop running
+  }, [isActive]); // Re-run the effect when `isActive` changes
 
-  return( 
+  const startCounter = () => {
+    if (count < 10) setIsActive(true); // Start only if count is less than 10
+  };
+
+  const stopCounter = () => {
+    setIsActive(false); // Stop the counter
+  };
+
+  const resetCounter = () => {
+    setCount(0);        // Reset count to 0
+    setIsActive(false); // Stop the counter when resetting
+  };
+
+  return (
     <>
-    <h3>Scenario</h3>
-    <p>
-        Create a count which increments every second until it reaches 10. 
-    </p>
-    <h3>Code explanation</h3>
-    <p>
-        Create a count which increments every second. 
-    </p>
-    <p>Count is {count}</p>
+      <h3>Counter with Start/Stop Functionality</h3>
+      <p>Count: {count}</p>
+      <button onClick={startCounter} disabled={isActive || count >= 10}>
+        Start
+      </button>
+      <button onClick={stopCounter} disabled={!isActive}>
+        Stop
+      </button>
+      <button onClick={resetCounter} disabled={count === 0}>
+        Reset
+      </button>
+      {count >= 10 && <p>The limit of 10 has been reached!</p>}
     </>
-
-  )
+  );
 }
